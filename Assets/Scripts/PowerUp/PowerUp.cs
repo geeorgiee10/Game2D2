@@ -29,6 +29,11 @@ public class PowerUp : MonoBehaviour
             puntosPowerUpClase.AddPoints(puntosPwrUp);
             puntosPowerUpClase.MostrarPuntosDinamicos(puntosPwrUp, transform.position);
             puntosPwrUp = 0;
+            if (--other.GetComponent<ContadorPowerUps>().powerUps == 0)
+            {
+                Debug.Log("win");
+            }
+            
             if(audioSource != null){
                 audioSource.Play();
                 Destroy(gameObject, audioSource.clip.length/2);
