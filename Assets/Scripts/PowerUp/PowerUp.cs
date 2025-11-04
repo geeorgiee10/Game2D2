@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PowerUp : MonoBehaviour
 {
@@ -31,7 +32,14 @@ public class PowerUp : MonoBehaviour
             puntosPwrUp = 0;
             if (--other.GetComponent<ContadorPowerUps>().powerUps == 0)
             {
-                Debug.Log("win");
+                if (Application.CanStreamedLevelBeLoaded("Menu"))
+                {
+                    SceneManager.LoadScene("Menu", LoadSceneMode.Single);
+                }
+                else
+                {
+                    Debug.LogError($"Escena {"Menu"} no encontrada");
+                }
             }
             
             if(audioSource != null){
